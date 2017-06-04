@@ -101,7 +101,7 @@ This time I will finish it.">
 C语言要写1000行代码，Java只需要写100行，而Python可能只要20行。所以Python是一种相当高级的语言。
 
 This time I will finish it.">
-<meta property="og:updated_time" content="2017-06-04T12:12:32.000Z">
+<meta property="og:updated_time" content="2017-06-04T12:27:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初体验 Python 里的切片大法">
 <meta name="twitter:description" content="最近一直在跟着廖雪峰的教程学习 Python 3。快速的过了一半教程，边学边敲，还在与实现相同功能的 Object-C 代码做对比，体验到了
@@ -328,9 +328,9 @@ This time I will finish it.">
 <blockquote>
 <p>C语言要写1000行代码，Java只需要写100行，而Python可能只要20行。<br>所以Python是一种相当高级的语言。</p>
 </blockquote>
-<p>This time I will finish it.<br><a id="more"></a></p>
-<p>##切片简介</p>
-<blockquote>
+<p>This time I will finish it.</p>
+<a id="more"></a>
+<h2 id="切片简介"><a href="#切片简介" class="headerlink" title="切片简介"></a>切片简介</h2><blockquote>
 <p>切片<br>取一个 list 或 tuple 的部分元素是非常常见的操作。比如，一个 list 如下：<br> L = [“Michael”, “Sarah”, “Tracy”, “Bob”, “Jack”]<br>取前3个元素，应该怎么做？</p>
 <p>笨办法：</p>
 <p> print([L[0], L[1], L[2]])<br>[“Michael”, “Sarah”, “Tracy”]<br>之所以是笨办法是因为扩展一下，取前N个元素就没辙了。</p>
@@ -338,22 +338,16 @@ This time I will finish it.">
 <p> r = []<br> n = 3<br> for i in range(n):<br>     r.append(L[i])<br> print(r)<br>[“Michael”, “Sarah”, “Tracy”]</p>
 <p>对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python 提供了切片（Slice）操作符，能大大简化这种操作。</p>
 </blockquote>
-<p>##语法对比（Object-C、Swift、Python）</p>
-<p>####目的：字符串逆序输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Object-C:</div><div class="line"></div><div class="line">NSString *str = @&quot;testReverseString&quot;;</div><div class="line">NSMutableString *reverseString = [NSMutableString string];</div><div class="line">    for(int i = 0 ; i &lt; str.length; i ++)&#123;</div><div class="line">        unichar c = [str characterAtIndex:str.length - i -1];</div><div class="line">        [reverseString appendFormat:@&quot;%c&quot;,c];</div><div class="line">    &#125;</div><div class="line">   str = reverseString;</div><div class="line">   NSLog(@&quot;%@&quot;,str);</div></pre></td></tr></table></figure>
+<h2 id="语法对比（Object-C、Swift、Python）"><a href="#语法对比（Object-C、Swift、Python）" class="headerlink" title="语法对比（Object-C、Swift、Python）"></a>语法对比（Object-C、Swift、Python）</h2><h4 id="目的：字符串逆序输出"><a href="#目的：字符串逆序输出" class="headerlink" title="目的：字符串逆序输出"></a>目的：字符串逆序输出</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Object-C:</div><div class="line"></div><div class="line">NSString *str = @&quot;testReverseString&quot;;</div><div class="line">NSMutableString *reverseString = [NSMutableString string];</div><div class="line">    for(int i = 0 ; i &lt; str.length; i ++)&#123;</div><div class="line">        unichar c = [str characterAtIndex:str.length - i -1];</div><div class="line">        [reverseString appendFormat:@&quot;%c&quot;,c];</div><div class="line">    &#125;</div><div class="line">   str = reverseString;</div><div class="line">   NSLog(@&quot;%@&quot;,str);</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Swift:</div><div class="line">    print(String(&quot;testReverseString&quot;.characters.reversed()))</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Python:</div><div class="line">    print(&quot;testReverseString&quot;[::-1])</div></pre></td></tr></table></figure>
 <p>显而易见，这里面又臭又笨的语法是我最熟悉的 Object-C，其次是能说人话的 Swift，接下来 Python 里面的 <strong>[::-1]</strong> 就是传说中的切片语句，接下来会对切片语句进行分析说明。</p>
-<p>##切片语法</p>
-<p>####先来个入门的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">testString = &quot;sliceString&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="切片语法"><a href="#切片语法" class="headerlink" title="切片语法"></a>切片语法</h2><h4 id="先来个入门的"><a href="#先来个入门的" class="headerlink" title="先来个入门的"></a>先来个入门的</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">testString = &quot;sliceString&quot;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">print(testString[2])  # 获得第三个字符</div><div class="line">&gt;&gt;&gt;i</div><div class="line">print(testString[-1])  # 获得最后一个字符</div><div class="line">&gt;&gt;&gt;g</div><div class="line">print(testString[:])  # 传入空,即为全部字符,没什么卵用</div><div class="line">&gt;&gt;&gt;sliceString</div></pre></td></tr></table></figure>
-<p>####进阶<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">print(testString[0:3])  # 正向切:截取第一位到第三位字符串 类似于 Object-C 里面 NSMakeRange 属性  loc, len</div><div class="line">&gt;&gt;&gt;sli</div><div class="line">print(testString[::2])  #正向切:间隔两个字符取一个</div><div class="line">&gt;&gt;&gt;sietig</div><div class="line">print(testString[:-3])  # 正向切:截取倒数第三个字符之前</div><div class="line">&gt;&gt;&gt;sliceStr</div><div class="line">print(testString[::-1])  # 反向切:本文介绍的字符串反转属性</div><div class="line">&gt;&gt;&gt;gnirtSecils</div><div class="line">print(testString[-3:-1])  # 反向切:截取倒数第三个字符至倒数第一个字符之间</div><div class="line">&gt;&gt;&gt;in</div><div class="line">print(testString[:-5:-4])  # 反向切:逆序拦截</div><div class="line">&gt;&gt;&gt;g</div></pre></td></tr></table></figure></p>
-<p>###语法解析</p>
-<p>####[] 方括号里面可选三种参数: beg (开始下标), end (结束下标), 以及 step (变化方向)</p>
-<p><strong>令人感动的是 Python 中的切片大法 不仅支持字符串操作，还可以操作 数组</strong></p>
+<h4 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">print(testString[0:3])  # 正向切:截取第一位到第三位字符串 类似于 Object-C 里面 NSMakeRange 属性  loc, len</div><div class="line">&gt;&gt;&gt;sli</div><div class="line">print(testString[::2])  #正向切:间隔两个字符取一个</div><div class="line">&gt;&gt;&gt;sietig</div><div class="line">print(testString[:-3])  # 正向切:截取倒数第三个字符之前</div><div class="line">&gt;&gt;&gt;sliceStr</div><div class="line">print(testString[::-1])  # 反向切:本文介绍的字符串反转属性</div><div class="line">&gt;&gt;&gt;gnirtSecils</div><div class="line">print(testString[-3:-1])  # 反向切:截取倒数第三个字符至倒数第一个字符之间</div><div class="line">&gt;&gt;&gt;in</div><div class="line">print(testString[:-5:-4])  # 反向切:逆序拦截</div><div class="line">&gt;&gt;&gt;g</div></pre></td></tr></table></figure>
+<h3 id="语法解析"><a href="#语法解析" class="headerlink" title="语法解析"></a>语法解析</h3><h4 id="方括号里面可选三种参数-beg-开始下标-end-结束下标-以及-step-变化方向"><a href="#方括号里面可选三种参数-beg-开始下标-end-结束下标-以及-step-变化方向" class="headerlink" title="[] 方括号里面可选三种参数: beg (开始下标), end (结束下标), 以及 step (变化方向)"></a>[] 方括号里面可选三种参数: beg (开始下标), end (结束下标), 以及 step (变化方向)</h4><p><strong>令人感动的是 Python 中的切片大法 不仅支持字符串操作，还可以操作 数组</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">L = [&apos;Michael&apos;, &apos;Sarah&apos;, &apos;Tracy&apos;, &apos;Bob&apos;, &apos;Jack&apos;]</div><div class="line">print(L[:3])</div><div class="line">&gt;&gt;&gt;[&apos;Michael&apos;, &apos;Sarah&apos;, &apos;Tracy&apos;]</div></pre></td></tr></table></figure>
-<p>####在很多编程语言中，针对字符串提供了很多各种截取函数，其实目的就是对字符串切片。Python 没有针对字符串的截取函数，只需要切片一个操作就可以完成，非常简单。</p>
-<p>基于这一思想，我们可以使用 Python 的高级语法，1行代码能实现的功能，决不写5行代码。<br><strong>代码越少，开发效率越高。</strong></p>
+<h4 id="在很多编程语言中，针对字符串提供了很多各种截取函数，其实目的就是对字符串切片。Python-没有针对字符串的截取函数，只需要切片一个操作就可以完成，非常简单。"><a href="#在很多编程语言中，针对字符串提供了很多各种截取函数，其实目的就是对字符串切片。Python-没有针对字符串的截取函数，只需要切片一个操作就可以完成，非常简单。" class="headerlink" title="在很多编程语言中，针对字符串提供了很多各种截取函数，其实目的就是对字符串切片。Python 没有针对字符串的截取函数，只需要切片一个操作就可以完成，非常简单。"></a>在很多编程语言中，针对字符串提供了很多各种截取函数，其实目的就是对字符串切片。Python 没有针对字符串的截取函数，只需要切片一个操作就可以完成，非常简单。</h4><p>基于这一思想，我们可以使用 Python 的高级语法，1行代码能实现的功能，决不写5行代码。<br><strong>代码越少，开发效率越高。</strong></p>
 <p>学了快一个星期的 Python 发现自己快有一些精神分裂了..比如 Python 里面没有<strong>{}</strong>符号，所以对于代码缩进异常严格，有时习惯按照自己的 Code Style 换行时把代码对齐，在 Python 里面是不行的！对于我这样的 Py 初学者，快速定位不到问题，一脸懵逼。然后自己将廖雪峰的源代码 copy 来编译通过后，对比代码差异才发觉是哪里出现问题。<br>在查问题的时候 发现了一个人的签名：<strong>技术和创新是具有扩散性和可复制性的。</strong><br>所以我觉得廖雪峰这种人愿意将技术传播教学分享出来的人，特别了不起。<br>希望自己也是。</p>
 
       
@@ -446,8 +440,17 @@ This time I will finish it.">
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -496,6 +499,22 @@ This time I will finish it.">
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#切片简介"><span class="nav-number">1.</span> <span class="nav-text">切片简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法对比（Object-C、Swift、Python）"><span class="nav-number">2.</span> <span class="nav-text">语法对比（Object-C、Swift、Python）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目的：字符串逆序输出"><span class="nav-number">2.0.1.</span> <span class="nav-text">目的：字符串逆序输出</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切片语法"><span class="nav-number">3.</span> <span class="nav-text">切片语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先来个入门的"><span class="nav-number">3.0.1.</span> <span class="nav-text">先来个入门的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进阶"><span class="nav-number">3.0.2.</span> <span class="nav-text">进阶</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法解析"><span class="nav-number">3.1.</span> <span class="nav-text">语法解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方括号里面可选三种参数-beg-开始下标-end-结束下标-以及-step-变化方向"><span class="nav-number">3.1.1.</span> <span class="nav-text">[] 方括号里面可选三种参数: beg (开始下标), end (结束下标), 以及 step (变化方向)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在很多编程语言中，针对字符串提供了很多各种截取函数，其实目的就是对字符串切片。Python-没有针对字符串的截取函数，只需要切片一个操作就可以完成，非常简单。"><span class="nav-number">3.1.2.</span> <span class="nav-text">在很多编程语言中，针对字符串提供了很多各种截取函数，其实目的就是对字符串切片。Python 没有针对字符串的截取函数，只需要切片一个操作就可以完成，非常简单。</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
