@@ -96,7 +96,7 @@
 <meta property="og:description" content="不知道有多少人和我一样，从来都不喜欢从 “Hello world!” 开始，总是觉得不满足，也没有成就感，所以自己更偏向于直接照着网上现成代码，直接手敲写一遍，正是所谓“不管怎么样，先跑起来再说”，然后再慢慢理解渗透，我觉得这种方式更适合我这种希望获得较大成就感的人，这种方式更适合我自己，让我进步更快。
 所以以下代码片段推荐以我的方式去操作。">
 <meta property="og:image" content="http://ocg56dfkm.bkt.clouddn.com/4fad718cfec5bcba86c7c91e1e291cd9.JPG">
-<meta property="og:updated_time" content="2017-07-05T16:47:59.000Z">
+<meta property="og:updated_time" content="2017-07-05T16:50:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录第一个 PHP 接口 （代码）">
 <meta name="twitter:description" content="不知道有多少人和我一样，从来都不喜欢从 “Hello world!” 开始，总是觉得不满足，也没有成就感，所以自己更偏向于直接照着网上现成代码，直接手敲写一遍，正是所谓“不管怎么样，先跑起来再说”，然后再慢慢理解渗透，我觉得这种方式更适合我这种希望获得较大成就感的人，这种方式更适合我自己，让我进步更快。
@@ -326,7 +326,7 @@
 <p>编辑完成后直接点击<strong>保存</strong>，这时就可以感觉到 PHP 作为世界上最好的语言优势 -&gt; <strong>不需要部署，直接保存就可以分分钟上线！</strong></p>
 <p>可以直接访问我的接口（method:GET）<br><a href="http://23.106.139.64/?a=getappstatus&amp;uid=10001" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=10001</a><br><a href="http://23.106.139.64/?a=getappstatus&amp;uid=10002" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=10002</a><br><a href="http://23.106.139.64/?a=getappstatus&amp;uid=10003" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=10003</a></p>
 <p>根据 <strong>uid</strong> 传递参数不同 返回不同的链接 URL <strong>非常不完美</strong>的实现了本次需求。</p>
-<p>###代码分析<br><strong>&lt;?php</strong> 声明标记这是一个 PHP 脚本<br><strong>A</strong> 相当于定义以及初始化全局变量<br><strong>B</strong> 根据接口传递进来的全局参数 <strong>$a</strong> 进行 <strong>数据库查找</strong> 操作，不同业务，不同页面，应该使用不同库表，在此不多解释<br><strong>C</strong> 根据库表查询 <strong>传递key</strong> <strong>返回value</strong> ,以 <strong>JSON</strong> 数据交换的形式格式化编码对象，返回给客户端后，退出脚本，完成一次操作。</p>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><p><strong>&lt;?php</strong> 声明标记这是一个 PHP 脚本<br><strong>A</strong> 相当于定义以及初始化全局变量<br><strong>B</strong> 根据接口传递进来的全局参数 <strong>$a</strong> 进行 <strong>数据库查找</strong> 操作，不同业务，不同页面，应该使用不同库表，在此不多解释<br><strong>C</strong> 根据库表查询 <strong>传递key</strong> <strong>返回value</strong> ,以 <strong>JSON</strong> 数据交换的形式格式化编码对象，返回给客户端后，退出脚本，完成一次操作。</p>
 <h3 id="完美的接口"><a href="#完美的接口" class="headerlink" title="完美的接口"></a>完美的接口</h3><p>刚刚的代码提到，目前实现的功能需求是<strong>不完美的</strong>，有些情况没有考虑到，举两个例子:</p>
 <p><strong>1.客户端 Request <a href="http://23.106.139.64/?a=getappstatus&amp;uid=" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=</a></strong><br>假如客户端没有传递任何 uid 参数的话，这样我们的接口返回就是一个 <strong>null</strong> 对象，类型对于客户端是非常危险的，可能会造成客户端无法解析导致 Crash 崩溃现象。</p>
 <p><strong>2.客户端 Request <a href="http://23.106.139.64/?a=getappstatus&amp;uid=123456" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=123456</a></strong><br>假如客户端传递的参数是库表里面不存在的话，返回的也是一个 <strong>null</strong> 对象，情况和第一种一样。</p>
@@ -498,7 +498,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#完美的接口"><span class="nav-number">1.</span> <span class="nav-text">完美的接口</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码分析"><span class="nav-number">1.</span> <span class="nav-text">代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完美的接口"><span class="nav-number">2.</span> <span class="nav-text">完美的接口</span></a></li></ol></div>
             
 
           </div>
