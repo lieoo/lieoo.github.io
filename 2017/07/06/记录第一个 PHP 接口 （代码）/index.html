@@ -1,0 +1,662 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="技术," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="不知道有多少人和我一样，从来都不喜欢从 “Hello world!” 开始，总是觉得不满足，也没有成就感，所以自己更偏向于直接照着网上现成代码，直接手敲写一遍，正是所谓“不管怎么样，先跑起来再说”，然后再慢慢理解渗透，我觉得这种方式更适合我这种希望获得较大成就感的人，这种方式更适合我自己，让我进步更快。
+所以以下代码片段推荐以我的方式去操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录第一个 PHP 接口 （代码）">
+<meta property="og:url" content="http://yoursite.com/2017/07/06/记录第一个 PHP 接口 （代码）/index.html">
+<meta property="og:site_name" content="lieoo's blog">
+<meta property="og:description" content="不知道有多少人和我一样，从来都不喜欢从 “Hello world!” 开始，总是觉得不满足，也没有成就感，所以自己更偏向于直接照着网上现成代码，直接手敲写一遍，正是所谓“不管怎么样，先跑起来再说”，然后再慢慢理解渗透，我觉得这种方式更适合我这种希望获得较大成就感的人，这种方式更适合我自己，让我进步更快。
+所以以下代码片段推荐以我的方式去操作。">
+<meta property="og:image" content="http://ocg56dfkm.bkt.clouddn.com/4fad718cfec5bcba86c7c91e1e291cd9.JPG">
+<meta property="og:updated_time" content="2017-07-05T16:47:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记录第一个 PHP 接口 （代码）">
+<meta name="twitter:description" content="不知道有多少人和我一样，从来都不喜欢从 “Hello world!” 开始，总是觉得不满足，也没有成就感，所以自己更偏向于直接照着网上现成代码，直接手敲写一遍，正是所谓“不管怎么样，先跑起来再说”，然后再慢慢理解渗透，我觉得这种方式更适合我这种希望获得较大成就感的人，这种方式更适合我自己，让我进步更快。
+所以以下代码片段推荐以我的方式去操作。">
+<meta name="twitter:image" content="http://ocg56dfkm.bkt.clouddn.com/4fad718cfec5bcba86c7c91e1e291cd9.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/06/记录第一个 PHP 接口 （代码）/"/>
+
+
+
+
+
+  <title> 记录第一个 PHP 接口 （代码） | lieoo's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">lieoo's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/06/记录第一个 PHP 接口 （代码）/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="lieoo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="lieoo's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="lieoo's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                记录第一个 PHP 接口 （代码）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-06T12:40:00+08:00">
+                2017-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>不知道有多少人和我一样，从来都不喜欢从 <strong>“Hello world!”</strong> 开始，总是觉得不满足，也没有成就感，所以自己更偏向于直接照着网上现成代码，直接手敲写一遍，正是所谓<strong>“不管怎么样，先跑起来再说”</strong>，然后再慢慢理解渗透，我觉得这种方式更适合我这种希望获得较大成就感的人，这种方式更适合我自己，让我进步更快。</p>
+<p>所以以下代码片段推荐以我的方式去操作。<br><a id="more"></a></p>
+<p>根据上一篇文章，我们的服务器已经支持了 PHP 的编译环境，PHP 文件默认打开方式是 <strong>.php</strong> 结尾。<br>所以我们直接将搭建完成的站点目录下的 <strong>index.html</strong> 直接重命名为 <strong>index.php</strong></p>
+<p><strong>需要以列表的形式展现文件，平铺形式无法重命名</strong> 😓</p>
+<p>选择编辑 <strong>index.php</strong> 文件，先将输入至在线编辑器里完成效果，一会再对于代码进行解释分析:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">//A</div><div class="line">$output = array();</div><div class="line">$a = @$_GET[&apos;a&apos;] ? $_GET[&apos;a&apos;] : &apos;&apos;;</div><div class="line">$uid = @$_GET[&apos;uid&apos;] ? $_GET[&apos;uid&apos;] : 0;</div><div class="line"></div><div class="line">//B</div><div class="line">if ($a == &apos;getappstatus&apos;) &#123;</div><div class="line">  //先假设 $mysql 是数据库 增查删改 操作都应该在此实现</div><div class="line">    $mysql = array(</div><div class="line">        10001 =&gt;&apos;https://www.fuckbaidu.com&apos;,</div><div class="line">        10002 =&gt;&apos;https://www.google.com&apos;,       </div><div class="line">        10003 =&gt; &apos;https://stackoverflow.com&apos;,</div><div class="line">    );</div><div class="line">    //C</div><div class="line">    $output = array(</div><div class="line">      &apos;url&apos; =&gt; $mysql[$uid]</div><div class="line">    );</div><div class="line">    exit(json_encode($output));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编辑完成后直接点击<strong>保存</strong>，这时就可以感觉到 PHP 作为世界上最好的语言优势 -&gt; <strong>不需要部署，直接保存就可以分分钟上线！</strong></p>
+<p>可以直接访问我的接口（method:GET）<br><a href="http://23.106.139.64/?a=getappstatus&amp;uid=10001" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=10001</a><br><a href="http://23.106.139.64/?a=getappstatus&amp;uid=10002" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=10002</a><br><a href="http://23.106.139.64/?a=getappstatus&amp;uid=10003" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=10003</a></p>
+<p>根据 <strong>uid</strong> 传递参数不同 返回不同的链接 URL <strong>非常不完美</strong>的实现了本次需求。</p>
+<p>###代码分析<br><strong>&lt;?php</strong> 声明标记这是一个 PHP 脚本<br><strong>A</strong> 相当于定义以及初始化全局变量<br><strong>B</strong> 根据接口传递进来的全局参数 <strong>$a</strong> 进行 <strong>数据库查找</strong> 操作，不同业务，不同页面，应该使用不同库表，在此不多解释<br><strong>C</strong> 根据库表查询 <strong>传递key</strong> <strong>返回value</strong> ,以 <strong>JSON</strong> 数据交换的形式格式化编码对象，返回给客户端后，退出脚本，完成一次操作。</p>
+<h3 id="完美的接口"><a href="#完美的接口" class="headerlink" title="完美的接口"></a>完美的接口</h3><p>刚刚的代码提到，目前实现的功能需求是<strong>不完美的</strong>，有些情况没有考虑到，举两个例子:</p>
+<p><strong>1.客户端 Request <a href="http://23.106.139.64/?a=getappstatus&amp;uid=" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=</a></strong><br>假如客户端没有传递任何 uid 参数的话，这样我们的接口返回就是一个 <strong>null</strong> 对象，类型对于客户端是非常危险的，可能会造成客户端无法解析导致 Crash 崩溃现象。</p>
+<p><strong>2.客户端 Request <a href="http://23.106.139.64/?a=getappstatus&amp;uid=123456" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=123456</a></strong><br>假如客户端传递的参数是库表里面不存在的话，返回的也是一个 <strong>null</strong> 对象，情况和第一种一样。</p>
+<p>这时候我们来完善一下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$output = array();</div><div class="line">$a = @$_GET[&apos;a&apos;] ? $_GET[&apos;a&apos;] : &apos;&apos;;</div><div class="line">$uid = @$_GET[&apos;uid&apos;] ? $_GET[&apos;uid&apos;] : 0;</div><div class="line"></div><div class="line">if (empty($a)) &#123;</div><div class="line">    $output = array(</div><div class="line">      &apos;url&apos;=&gt; &apos;&apos;,</div><div class="line">      &apos;info&apos;=&gt; &apos;坑爹啊!&apos;, </div><div class="line">      &apos;code&apos;=&gt; -201);</div><div class="line">    exit(json_encode($output));</div><div class="line">&#125;</div><div class="line"></div><div class="line">if ($a == &apos;getappstatus&apos;) &#123;</div><div class="line">    //检查参数</div><div class="line">    if ($uid == 0) &#123;</div><div class="line">        $output = array(</div><div class="line">          &apos;url&apos;=&gt;&apos;&apos;,</div><div class="line">          &apos;info&apos;=&gt;&apos;The uid is null!&apos;,</div><div class="line">          &apos;code&apos;=&gt; -401</div><div class="line">        );</div><div class="line">        exit(json_encode($output));</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    $mysql = array(</div><div class="line">        10001 =&gt;&apos;https://www.fuckbaidu.com&apos;,</div><div class="line">        10002 =&gt;&apos;https://www.google.com&apos;,       </div><div class="line">        10003 =&gt; &apos;https://stackoverflow.com&apos;,</div><div class="line">    );</div><div class="line">    </div><div class="line"> 	 if (empty($mysql[$uid])) &#123;</div><div class="line">   	  $output = array(</div><div class="line">      	&apos;url&apos;=&gt; &apos;&apos;,</div><div class="line">      	&apos;info&apos;=&gt; &apos;The uid does not exist!&apos;, </div><div class="line">      	&apos;code&apos;=&gt; -201);</div><div class="line">   		 exit(json_encode($output));</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">    $output = array(</div><div class="line">        &apos;url&apos;=&gt; $mysql[$uid], </div><div class="line">        &apos;info&apos; =&gt; &apos;&apos;, </div><div class="line">        &apos;code&apos; =&gt; 200, </div><div class="line">    );</div><div class="line">    exit(json_encode($output));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这时我们的目的就达到了！完成了此次的需求任务。并且完美的实现了服务端接口<br>可以访问:<br><strong>不带任何参数</strong> <a href="http://23.106.139.64/" target="_blank" rel="external">http://23.106.139.64/</a><br><strong>传递空参数</strong> -&gt; <a href="http://23.106.139.64/?a=getappstatus&amp;uid=" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=</a><br><strong>传递异常参数</strong>  -&gt; <a href="http://23.106.139.64/?a=getappstatus&amp;uid=123456" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=123456</a><br><strong>正常传参</strong> -&gt;<a href="http://23.106.139.64/?a=getappstatus&amp;uid=10001" target="_blank" rel="external">http://23.106.139.64/?a=getappstatus&amp;uid=10001</a></p>
+<p>耗时两小时，可以收拾收拾东西下班了。<br>可以在简历上写上几个大字: <strong>熟悉 PHP 接口开发了</strong><br><img src="http://ocg56dfkm.bkt.clouddn.com/4fad718cfec5bcba86c7c91e1e291cd9.JPG" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag"># 技术</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/12/初体验传说中 Python 里的切片大法/" rel="next" title="初体验 Python 里的切片大法">
+                <i class="fa fa-chevron-left"></i> 初体验 Python 里的切片大法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/06/记录第一个 PHP 接口（环境）/" rel="prev" title="记录第一个 PHP 接口（环境）">
+                记录第一个 PHP 接口（环境） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="lieoo" />
+          <p class="site-author-name" itemprop="name">lieoo</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#完美的接口"><span class="nav-number">1.</span> <span class="nav-text">完美的接口</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lieoo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
