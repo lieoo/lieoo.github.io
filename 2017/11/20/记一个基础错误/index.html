@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="lieoo's blog">
 <meta property="og:description" content="起因：有个小伙伴在群里问了这样一个问题：有会  C 语言的吗？">
 <meta property="og:image" content="http://ocg56dfkm.bkt.clouddn.com/ba6f63911a689654025c4b99f4380aa5.jpeg">
-<meta property="og:updated_time" content="2017-12-19T18:22:02.367Z">
+<meta property="og:updated_time" content="2017-12-19T18:25:18.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一个基础错误">
 <meta name="twitter:description" content="起因：有个小伙伴在群里问了这样一个问题：有会  C 语言的吗？">
@@ -326,7 +326,7 @@
 <h2 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h2><h3 id="首先应该说明的是这段代码在不同的编译环境中结果是不一样的。"><a href="#首先应该说明的是这段代码在不同的编译环境中结果是不一样的。" class="headerlink" title="首先应该说明的是这段代码在不同的编译环境中结果是不一样的。"></a>首先应该说明的是这段代码在不同的编译环境中结果是不一样的。</h3><p><strong>in Mac OS 10.13 GCC 4.2.1 (Xcode):</strong> <code>1，2，3</code></p>
 <p><strong>in Compile and Execute C Online (GNU GCC v7.1.1):</strong> <code>2，3，3</code></p>
 <p><strong>得知结果后，在想 What the FXXK 到底为什么，哪里错了。</strong></p>
-<h2 id="错误总结："><a href="#错误总结：" class="headerlink" title="错误总结："></a>错误总结：</h2><h3 id="第一：代码执行顺序"><a href="#第一：代码执行顺序" class="headerlink" title="第一：代码执行顺序"></a>第一：代码执行顺序</h3><p><strong>printf 函数的执行顺序是<code>由右到左</code>的。</strong><br>直接运算明显错误，导致结果肯定不一致</p>
+<h2 id="错误总结："><a href="#错误总结：" class="headerlink" title="错误总结："></a>错误总结：</h2><h3 id="第一：代码执行顺序"><a href="#第一：代码执行顺序" class="headerlink" title="第一：代码执行顺序"></a>第一：代码执行顺序</h3><p><strong>GCC 中 printf 函数的执行顺序是<code>由右到左</code>的。</strong><br>直接运算明显错误，导致结果肯定不一致</p>
 <h3 id="第二：-i-and-i"><a href="#第二：-i-and-i" class="headerlink" title="第二：++i and i++"></a>第二：++i and i++</h3><p><strong>前自增运算符（++i）先加 1，再使用</strong><br><strong>后自增运算符（i++）先使用 i，执行语句代码后再加 1</strong></p>
 <h3 id="第三：“计算”不等于“输出”"><a href="#第三：“计算”不等于“输出”" class="headerlink" title="第三：“计算”不等于“输出”"></a>第三：“计算”不等于“输出”</h3><p><strong>自增运算是要在整条语句结束以后才自加 1 的</strong></p>
 <h2 id="答案："><a href="#答案：" class="headerlink" title="答案："></a>答案：</h2><p>想理解答案首先要理解编译顺序：<br>在 <strong>GCC v7.1.1</strong> 的编译器解释为:</p>
