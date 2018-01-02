@@ -95,7 +95,7 @@
 <meta property="og:description" content="我所在的项目组 iOS 版本 App 进入收尾阶段，还是希望自己慢慢接触到 Swift，一点一点使用 Swift 重构甚至是重写。其中 “@escaping” 就是我遇到的问题之一，所以希望本篇文章作为自己的收获和笔记。">
 <meta property="og:image" content="http://ocg56dfkm.bkt.clouddn.com/acd89b8db61ed474c998b7d710831bb9.png">
 <meta property="og:image" content="http://ocg56dfkm.bkt.clouddn.com/814fbb7982e9f13e327be67531f8130d.png">
-<meta property="og:updated_time" content="2018-01-02T15:14:49.618Z">
+<meta property="og:updated_time" content="2018-01-02T15:16:44.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="escaping 的理解(Swift 4.0)">
 <meta name="twitter:description" content="我所在的项目组 iOS 版本 App 进入收尾阶段，还是希望自己慢慢接触到 Swift，一点一点使用 Swift 重构甚至是重写。其中 “@escaping” 就是我遇到的问题之一，所以希望本篇文章作为自己的收获和笔记。">
@@ -327,8 +327,7 @@
 <p>大意为:</p>
 <p><strong>如果一个闭包被作为一个参数传递给一个函数，并且在函数 return 之后才被唤起执行，那么这个闭包是逃逸闭包</strong></p>
 <p><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html" target="_blank" rel="external">Swift_Programming_Language/Closures</a></p>
-<p>##什么是 @non-escaping (非逃逸)</p>
-<p>可以将 <strong>@non-escaping</strong> 理解为:</p>
+<h2 id="什么是-non-escaping-非逃逸"><a href="#什么是-non-escaping-非逃逸" class="headerlink" title="什么是 @non-escaping (非逃逸)"></a>什么是 @non-escaping (非逃逸)</h2><p>可以将 <strong>@non-escaping</strong> 理解为:</p>
 <p><strong>如果这个闭包是在这个函数结束前内被调用，就是非逃逸的即 @noescape</strong></p>
 <p>需要记住的一点是:<br>在 Swift 1.0 和 Swift 2.0 时代,<strong>@escaping</strong> 是默认的。如果知道这个闭包函数是非逃逸的，可以使用 <strong>@noescape</strong> 来标记函数。</p>
 <p>但是在 Swift 3.0，则反之，如果知道这个闭包函数是逃逸的，就必须用 <strong>@escaping</strong> 标记他。</p>
@@ -511,7 +510,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-escaping-逃逸"><span class="nav-number">2.</span> <span class="nav-text">什么是 @escaping (逃逸)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">3.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#escaping-逃逸闭包"><span class="nav-number">4.1.</span> <span class="nav-text">@escaping 逃逸闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#noescape-非逃逸闭包"><span class="nav-number">4.2.</span> <span class="nav-text">@noescape 非逃逸闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">5.</span> <span class="nav-text">解决</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-escaping-逃逸"><span class="nav-number">2.</span> <span class="nav-text">什么是 @escaping (逃逸)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-non-escaping-非逃逸"><span class="nav-number">3.</span> <span class="nav-text">什么是 @non-escaping (非逃逸)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">4.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">5.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#escaping-逃逸闭包"><span class="nav-number">5.1.</span> <span class="nav-text">@escaping 逃逸闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#noescape-非逃逸闭包"><span class="nav-number">5.2.</span> <span class="nav-text">@noescape 非逃逸闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">6.</span> <span class="nav-text">解决</span></a></li></ol></div>
             
 
           </div>
