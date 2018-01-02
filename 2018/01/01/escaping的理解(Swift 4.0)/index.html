@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="笔记," />
 
 
 
@@ -87,40 +87,19 @@
 
 
 
-<meta name="description" content="发现了自己的一个缺点：在沟通的时候，只想听，不想说。
-回忆一下自己在童年、小学，都是非常内向，随着年龄的成长，社会阅历的增多，可能唯一的变化就是变得自信了，但是沟通依然…
-###改变
-
-多参加聚会
-主动聊天，尝试多说废话
-主动结识朋友
-
-美好的人生，慢慢来">
+<meta name="description" content="我所在的项目组 iOS 版本 App 进入收尾阶段，还是希望自己慢慢接触到 Swift，一点一点使用 Swift 重构甚至是重写。其中 “@escaping” 就是我遇到的问题之一，所以希望本篇文章作为自己的收获和笔记。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="社交能力退化">
-<meta property="og:url" content="http://yoursite.com/2017/01/12/社交能力退化/index.html">
+<meta property="og:title" content="escaping 的理解(Swift 4.0)">
+<meta property="og:url" content="http://yoursite.com/2018/01/01/escaping的理解(Swift 4.0)/index.html">
 <meta property="og:site_name" content="lieoo's blog">
-<meta property="og:description" content="发现了自己的一个缺点：在沟通的时候，只想听，不想说。
-回忆一下自己在童年、小学，都是非常内向，随着年龄的成长，社会阅历的增多，可能唯一的变化就是变得自信了，但是沟通依然…
-###改变
-
-多参加聚会
-主动聊天，尝试多说废话
-主动结识朋友
-
-美好的人生，慢慢来">
-<meta property="og:updated_time" content="2017-02-12T14:01:29.000Z">
+<meta property="og:description" content="我所在的项目组 iOS 版本 App 进入收尾阶段，还是希望自己慢慢接触到 Swift，一点一点使用 Swift 重构甚至是重写。其中 “@escaping” 就是我遇到的问题之一，所以希望本篇文章作为自己的收获和笔记。">
+<meta property="og:image" content="http://ocg56dfkm.bkt.clouddn.com/acd89b8db61ed474c998b7d710831bb9.png">
+<meta property="og:image" content="http://ocg56dfkm.bkt.clouddn.com/814fbb7982e9f13e327be67531f8130d.png">
+<meta property="og:updated_time" content="2018-01-02T15:12:21.117Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="社交能力退化">
-<meta name="twitter:description" content="发现了自己的一个缺点：在沟通的时候，只想听，不想说。
-回忆一下自己在童年、小学，都是非常内向，随着年龄的成长，社会阅历的增多，可能唯一的变化就是变得自信了，但是沟通依然…
-###改变
-
-多参加聚会
-主动聊天，尝试多说废话
-主动结识朋友
-
-美好的人生，慢慢来">
+<meta name="twitter:title" content="escaping 的理解(Swift 4.0)">
+<meta name="twitter:description" content="我所在的项目组 iOS 版本 App 进入收尾阶段，还是希望自己慢慢接触到 Swift，一点一点使用 Swift 重构甚至是重写。其中 “@escaping” 就是我遇到的问题之一，所以希望本篇文章作为自己的收获和笔记。">
+<meta name="twitter:image" content="http://ocg56dfkm.bkt.clouddn.com/acd89b8db61ed474c998b7d710831bb9.png">
 
 
 
@@ -148,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/01/12/社交能力退化/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/01/escaping的理解(Swift 4.0)/"/>
 
 
 
 
 
-  <title> 社交能力退化 | lieoo's blog </title>
+  <title> escaping 的理解(Swift 4.0) | lieoo's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +240,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/12/社交能力退化/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/01/escaping的理解(Swift 4.0)/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="lieoo">
@@ -285,7 +264,7 @@
             
             
               
-                社交能力退化
+                escaping 的理解(Swift 4.0)
               
             
           </h1>
@@ -300,8 +279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-12T21:51:58+08:00">
-                2017-01-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-01T00:00:00+08:00">
+                2018-01-01
               </time>
             
 
@@ -336,15 +315,42 @@
       
 
       
-        <p>发现了自己的一个缺点：在沟通的时候，只想听，不想说。</p>
-<p>回忆一下自己在童年、小学，都是非常内向，随着年龄的成长，社会阅历的增多，可能唯一的变化就是变得自信了，但是沟通依然…</p>
-<p>###改变</p>
-<ol>
-<li>多参加聚会</li>
-<li>主动聊天，尝试多说<strong>废话</strong></li>
-<li>主动结识朋友</li>
+        <p>我所在的项目组 iOS 版本 App 进入收尾阶段，还是希望自己慢慢接触到 Swift，一点一点使用 Swift 重构甚至是重写。其中 <strong><em>“@escaping”</em></strong> 就是我遇到的问题之一，所以希望本篇文章作为自己的收获和笔记。<br><a id="more"></a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>先上段代码</p>
+<p><img src="http://ocg56dfkm.bkt.clouddn.com/acd89b8db61ed474c998b7d710831bb9.png" alt=""></p>
+<p>这段代码作用于网络请求，自己想封装一下请求功能。</p>
+<p>传参数为:<code>URL 链接``请求参数</code> </p>
+<p>返回值为:<code>成功请求的 JSON</code>和<code>请求失败的 Error</code></p>
+<p>报错的关键字 <strong>Closure use of non-escaping parameter ‘success’ may allow it to escape,Parameter ‘success’ is implicitly non-escaping.</strong></p>
+<h2 id="什么是-escaping-逃逸"><a href="#什么是-escaping-逃逸" class="headerlink" title="什么是 @escaping (逃逸)"></a>什么是 @escaping (逃逸)</h2><p>先来段英文定义解(zhuang)释(xia)下(bi)</p>
+<p><strong>If a closure is passed as an argument to a function and it is invoked after the function returns, the closure is escaping.</strong></p>
+<p>大意为:</p>
+<p><strong>如果一个闭包被作为一个参数传递给一个函数，并且在函数 return 之后才被唤起执行，那么这个闭包是逃逸闭包</strong></p>
+<p><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html" target="_blank" rel="external">Swift_Programming_Language/Closures</a></p>
+<p>##什么是 @non-escaping (非逃逸)</p>
+<p>可以将 <strong>@non-escaping</strong> 理解为:</p>
+<p><strong>如果这个闭包是在这个函数结束前内被调用，就是非逃逸的即 @noescape</strong></p>
+<p>需要记住的一点是:<br>在 Swift 1.0 和 Swift 2.0 时代,<strong>@escaping</strong> 是默认的。如果知道这个闭包函数是非逃逸的，可以使用 <strong>@noescape</strong> 来标记函数。</p>
+<p>但是在 Swift 3.0，则反之，如果知道这个闭包函数是逃逸的，就必须用 <strong>@escaping</strong> 标记他。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>在自己写 Swift 中最常见的闭包两个例子是:</p>
+<p>使用 Alamofire 封装网络请求 -&gt; 逃逸闭包 -&gt; 需加 <strong>@escaping</strong> 关键字</p>
+<p>使用 SnapKit 库布局 -&gt; 非逃逸闭包 -&gt;无需加任何关键字（默认即为非逃逸闭包）</p>
+<p>*这里可以将逃逸闭包理解为异步操作，非逃逸闭包理解为同步操作。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="escaping-逃逸闭包"><a href="#escaping-逃逸闭包" class="headerlink" title="@escaping 逃逸闭包"></a>@escaping 逃逸闭包</h3><ol>
+<li><p>访问属性或调用方法时必须加 <strong>self</strong> ,而且要注意循环引用问题</p>
+</li>
+<li><p>闭包在函数 <strong>return</strong> 之后执行，即异步执行</p>
+</li>
 </ol>
-<p>美好的人生，慢慢来</p>
+<h3 id="noescape-非逃逸闭包"><a href="#noescape-非逃逸闭包" class="headerlink" title="@noescape 非逃逸闭包"></a>@noescape 非逃逸闭包</h3><ol>
+<li><p>闭包中默认属性</p>
+</li>
+<li><p>闭包在函数返回之前执行，即同步执行</p>
+</li>
+</ol>
+<p>逃逸闭包与非逃逸闭包 目的是明确的告诉编译器：这里是@escaping，<br>即逃逸闭包，能够最大程度上对编译器编译优化。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>我所处的状态为逃逸闭包，所以要在闭包前加入@escaping即可解决此问题。</p>
+<p><img src="http://ocg56dfkm.bkt.clouddn.com/814fbb7982e9f13e327be67531f8130d.png" alt=""></p>
 
       
     </div>
@@ -366,6 +372,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+        </div>
+      
 
       
         
@@ -375,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/12/变与守/" rel="next" title="变与守">
-                <i class="fa fa-chevron-left"></i> 变与守
+              <a href="/2017/11/20/记一个基础错误/" rel="next" title="记一个基础错误">
+                <i class="fa fa-chevron-left"></i> 记一个基础错误
               </a>
             
           </div>
@@ -384,10 +396,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/20/redPacket/" rel="prev" title="记录一次伪造 GPS 定位参与抢红包活动">
-                记录一次伪造 GPS 定位参与抢红包活动 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -434,8 +442,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -484,6 +501,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-escaping-逃逸"><span class="nav-number">2.</span> <span class="nav-text">什么是 @escaping (逃逸)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">3.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#escaping-逃逸闭包"><span class="nav-number">4.1.</span> <span class="nav-text">@escaping 逃逸闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#noescape-非逃逸闭包"><span class="nav-number">4.2.</span> <span class="nav-text">@noescape 非逃逸闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">5.</span> <span class="nav-text">解决</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
